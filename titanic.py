@@ -73,7 +73,7 @@ train_age_survive_df = train_age_survive_df[['Age']]
 
 # train_age_nosurvive_df.plot.hist(bins=30)
 # train_age_survive_df.plot.hist(bins=30)
-
+# plt.show()
 
 # Q12
 #####
@@ -97,23 +97,14 @@ train_pclass_2_survive_df = train_pclass_2_survive_df[['Age']]
 
 train_pclass_3_survive_df = train_df.query('Survived == 1 and Pclass == 3')
 train_pclass_3_survive_df = train_pclass_3_survive_df[['Age']]
+
+# train_pclass_1_survive_df.plot.hist(bins=30)
+# train_pclass_1_nosurvive_df.plot.hist(bins=30)
+# train_pclass_2_survive_df.plot.hist(bins=30)
+# train_pclass_2_nosurvive_df.plot.hist(bins=30)
 # train_pclass_3_survive_df.plot.hist(bins=30)
+# train_pclass_3_nosurvive_df.plot.hist(bins=30)
 # plt.show()
-
-# Checking to see if pclass ages vary
-train_pclass_1_df = train_df.query('Pclass == 1')
-train_pclass_1_df = train_pclass_1_df[['Age']]
-
-train_pclass_2_df = train_df.query('Pclass == 2')
-train_pclass_2_df = train_pclass_2_df[['Age']]
-
-train_pclass_3_df = train_df.query('Pclass == 3')
-train_pclass_3_df = train_pclass_3_df[['Age']]
-
-# train_pclass_1_df.plot.hist(bins=30)
-# train_pclass_2_df.plot.hist(bins=30)
-# train_pclass_3_df.plot.hisprint(train_df.head())t(bins=30)
-
 
 # Q13
 #####
@@ -172,7 +163,12 @@ frames_Q_1 = [avg_survived1_embarkedQ_df.query(
     'Sex=="male"'), avg_survived1_embarkedQ_df.query('Sex=="female"')]
 plotdata_Q_1 = pd.concat(frames_Q_1)
 
+# plotdata_Q_0.plot(kind="bar")
 # plotdata_Q_1.plot(kind="bar")
+# plotdata_C_0.plot(kind="bar")
+# plotdata_C_1.plot(kind="bar")
+# plotdata_S_0.plot(kind="bar")
+# plotdata_S_1.plot(kind="bar")
 # plt.show()
 
 # Q14
