@@ -193,9 +193,14 @@ print(test_df.shape[0])
 
 # Q16
 #####
+# Sex column is present
+print("Q16:")
+print(train_df["Sex"].head(5))
 train_df['Sex'] = np.where(train_df['Sex'] == 'male', 0, 1)
 train_df.rename(columns={"Sex": "Gender"}, inplace=True)
 train_df.astype({'Gender': 'int32'})
+# We can see that the Sex column is gone, replaced with gender
+print(train_df["Gender"].head(5))
 
 # Q17
 #####
@@ -212,32 +217,44 @@ age_complete_df['Embarked'].replace('C', 0, inplace=True)
 age_complete_df['Embarked'].replace('Q', 1, inplace=True)
 age_complete_df['Embarked'].replace('S', 2, inplace=True)
 
+
 # Use the imputter
 imputer = KNNImputer(n_neighbors=5)
 age_complete_df = pd.DataFrame(imputer.fit_transform(
     age_complete_df), columns=age_complete_df.columns)
 print('Missing age values after replacement:')
 print(age_complete_df['Age'].isnull().sum())
+# Using head, we can see that we've filled the age column at
+# index 5, 17, and 19 with data.
+print(age_complete_df['Age'].head(20))
 
 # Q18
 #####
 print('Q18:')
 print('Missing Embarked values:')
 print(train_df.Embarked.isnull().sum())
+# One of the rows with missing embarked data
+print(train_df.iloc[61])
 print(train_df.Embarked.describe())
 # according to describe, 'S' is the most common value in Embarked
 train_df.Embarked.fillna('S', inplace=True)
 print('Missing Embarked values:')
 print(train_df.Embarked.isnull().sum())
+# The missing data has now been filled in.
+print(train_df.iloc[61])
 
 # Q19
 #####
 print('Q19:')
 print('Missing Test Fare values:')
 print(test_df.Fare.isnull().sum())
+# The row with the missing fare value
+print(print(test_df.iloc[152]))
 test_df.Fare.fillna(test_df.Fare.mode()[0], inplace=True)
 print('Missing Test Fare values:')
 print(test_df.Fare.isnull().sum())
+# The row in question now has its fare column filled in
+print(test_df.iloc[152])
 
 # Q20
 #####
@@ -245,4 +262,7 @@ print('Q20:')
 bins = [-0.001, 7.91, 14.454, 31.0, 512.329]
 labels = [0, 1, 2, 3]
 train_df['Fare Ordinal Label'] = pd.cut(train_df['Fare'], bins, labels=labels)
+# Printing the fare values along with their new label
 print(train_df[['Fare', 'Fare Ordinal Label']].head(5))
+# dropping redundant fare column
+train_df.drop(['Fare'], axis=1)
